@@ -1,95 +1,87 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client'
+import { useEffect, useState } from "react";
+import {Button, Wrapper, TrafficBoard, LargeHBox, SmallHBox, SmallVBox, LargeVBox, TrafficWrapper, Signal} from '../styles'
+import Traffic from "@/components/TrafficWrapper";
+import { startTrafficCycle } from "@/hooks/startTraffic";
+import { resetLight } from "@/hooks/resetLight";
+
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  // Light state for Street A and Street B
+  const [lightA, setLightA] = useState<'' | 'green' | 'red' | 'yellow'>("green");
+  const [lightB, setLightB] = useState<'' | 'green' | 'red' | 'yellow'>("red");
+  const [running, setRunning] = useState(false); // Track whether the system is running
+  const [timerId, setTimerId] = useState<NodeJS.Timeout | null>(null);  // To clear timeouts during reset
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+  // Timing constants
+  const ONE_CYCLE = 10000; // 10 seconds in milliseconds
+  const HALF_CYCLE = 5000; // 5 seconds in milliseconds
+
+
+  useEffect(() => {
+    if (running) {
+      startTrafficCycle({setLightA, setLightB, HALF_CYCLE, ONE_CYCLE, setTimerId});
+    }
+
+    // Cleanup on component unmount or reset
+    return () => {
+      if (timerId) {
+        clearTimeout(timerId); // Clear all timeouts
+      }
+    };
+  }, [running]);
+
+  // Reset button handler
+  const handleReset = () => {
+    resetLight({setLightA, setLightB, setRunning, timerId}); // Reset the lights to the initial state
+  };
+
+  // Start button handler
+   const handleStart = () => {
+    if (!running) {
+      setRunning(true); // Start the system
+    }
+  };
+
+  return (
+    <Wrapper >
+      <TrafficBoard>
+            <LargeHBox>
+                <LargeVBox></LargeVBox>
+                {/* street A */}
+                <SmallVBox>
+                      <Traffic light={lightA}/>
+                </SmallVBox>
+                <LargeVBox></LargeVBox>
+            </LargeHBox>
+
+            <SmallHBox>
+                <LargeHBox $inputColor="#2d2c2b" $justifyContent='center' $alignItems="center" >
+                        <Traffic light='yellow'/>
+                </LargeHBox>
+
+                {/* Action Buttons */}
+                <SmallHBox $flexDirection='column'>
+                      <Button onClick={handleStart}>Start</Button>
+                      <Button onClick={handleReset}>Reset</Button>
+                </SmallHBox>
+
+                {/* Street B */}
+                <LargeHBox $inputColor="#2d2c2b"  $justifyContent='center' $alignItems="center" >
+                      <Traffic light={lightB}/>
+                </LargeHBox>
+            </SmallHBox>
+
+            <LargeHBox>
+                <LargeVBox></LargeVBox>
+                <SmallVBox>
+                    <Traffic light='green'/>
+                </SmallVBox>
+                <LargeVBox></LargeVBox>
+            </LargeHBox>
+      </TrafficBoard>
+    </Wrapper>
   );
 }
+
+
