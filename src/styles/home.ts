@@ -13,14 +13,16 @@ const size = {
 }
 
 const device={
-  mobileS: `(min-width: ${size.mobileS})`,
-  mobileM: `(min-width: ${size.mobileM})`,
-  mobileL: `(min-width: ${size.mobileL})`,
-  tablet: `(min-width: ${size.tablet})`,
-  laptop: `(min-width: ${size.laptop})`,
-  laptopL: `(min-width: ${size.laptopL})`,
-  desktop: `(min-width: ${size.desktop})`,
+  mobileS: `(max-width: ${size.mobileS})`,
+  mobileM: `(max-width: ${size.mobileM})`,
+  mobileL: `(max-width: ${size.mobileL})`,
+  tablet: `(max-width: ${size.tablet})`,
+  laptop: `(max-width: ${size.laptop})`,
+  laptopL: `(max-width: ${size.laptopL})`,
+  desktop: `(max-width: ${size.desktop})`,
 }
+
+
 export const Button = styled.button`
   display: flex;
   color: white;
@@ -52,11 +54,8 @@ height: 100%;
 border: none;
 border-radius: 4px;
 
-@media  ${device.mobileS}{
+@media  ${device.mobileL}{
     width: 100%;
-  }
-@media  ${device.tablet}{
-    width: 80%;
   }
 
 `
@@ -100,11 +99,8 @@ align-items: center;
 color: white;
 border-left: 4px solid #fdff57;
 border-right: 4px solid #fdff57;
-@media  ${device.mobileS}{
+@media  ${device.mobileL}{
     min-width: 30%;
-  }
-@media  ${device.tablet}{
-    min-width: 20%;
   }
 `
 
@@ -112,11 +108,8 @@ export const LargeVBox = styled.div`
 min-width: 40%;
 height: auto;
 background: white;
-@media ${device.mobileS}{
+@media ${device.mobileL}{
     min-width: 35%;
-  }
-@media  ${device.tablet}{
-    min-width: 40%;
   }
 `
 
