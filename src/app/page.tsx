@@ -57,7 +57,7 @@ export default function Home() {
 
             <SmallHBox>
                 <LargeHBox $inputColor="#2d2c2b" $justifyContent='center' $alignItems="center" >
-                        <Traffic light='yellow'/>
+                        <Traffic light={lightB}/>
                 </LargeHBox>
 
                 {/* Action Buttons */}
@@ -75,7 +75,7 @@ export default function Home() {
             <LargeHBox>
                 <LargeVBox></LargeVBox>
                 <SmallVBox>
-                    <Traffic light='green'/>
+                    <Traffic light={lightA}/>
                 </SmallVBox>
                 <LargeVBox></LargeVBox>
             </LargeHBox>
