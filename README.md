@@ -15,19 +15,16 @@ To run the app locally, follow these steps:
 Clone the repository:
 
 ```bash
-Copy code
 git clone [repository-link]
 cd traffic-light-app
-Install dependencies:
 ```
+Install dependencies:
 
 ```bash
-Copy code
 npm install
-Start the development server:
 ```
+Start the development server:
 ```bash
-Copy code
 npm start
 ```
 The app will be available at http://localhost:3000.
