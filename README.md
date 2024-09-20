@@ -1,37 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Traffic Light Control App
 
-## Getting Started
 
-First, run the development server:
+Traffic Light Control App - Documentation
+Overview
+The Traffic Light Control App is a simple simulation of a traffic control system that visually represents the functioning of traffic lights. Users can manually start and reset the traffic light cycle through the provided controls, simulating the transitions between red, yellow, and green lights. This app can be used for educational purposes or as a demonstration of basic UI functionality.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Tech Stack
+Frontend Framework: React.js
+Styling: CSS/Chakra UI
+Deployment: Netlify
+Installation/Setup Instructions
+To run the app locally, follow these steps:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Clone the repository:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+bash
+Copy code
+git clone [repository-link]
+cd traffic-light-app
+Install dependencies:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+bash
+Copy code
+npm install
+Start the development server:
 
-## Learn More
+bash
+Copy code
+npm start
+The app will be available at http://localhost:3000.
 
-To learn more about Next.js, take a look at the following resources:
+Key Features
+Traffic Light Simulation: Displays a simulation of a traffic light system that can be controlled manually.
+Start and Reset Controls: The traffic light sequence doesn't start automatically. Users need to press the Start button to begin the sequence and can use the Reset button to stop the current cycle and restart from the beginning.
+Testing
+Currently, no tests have been implemented for this app.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# TrafficLight
+Known Issues/Limitations
+The timing intervals for the lights are static and cannot be configured through the UI.
+No automated tests are implemented for the app’s functionality.
+Future Enhancements
+Pause Button: Introduce a pause feature to allow users to temporarily halt the light cycle.
+Configurable Timers: Allow users to adjust the duration for each light (red, yellow, green) through a settings menu.
+Pedestrian Light Addition: Add a pedestrian signal system that works in sync with the traffic lights.
+Manual Light Control: Enable users to manually cycle through the light states.
