@@ -14,29 +14,30 @@ To run the app locally, follow these steps:
 
 Clone the repository:
 
-bash
+```bash
 Copy code
 git clone [repository-link]
 cd traffic-light-app
 Install dependencies:
+```
 
-bash
+```bash
 Copy code
 npm install
 Start the development server:
-
-bash
+```
+```bash
 Copy code
 npm start
+```
 The app will be available at http://localhost:3000.
-
-Key Features
+Key Features:
 Traffic Light Simulation: Displays a simulation of a traffic light system that can be controlled manually.
 Start and Reset Controls: The traffic light sequence doesn't start automatically. Users need to press the Start button to begin the sequence and can use the Reset button to stop the current cycle and restart from the beginning.
 Testing
 Currently, no tests have been implemented for this app.
 
-Known Issues/Limitations
+Known Issues/Limitations:
 The timing intervals for the lights are static and cannot be configured through the UI.
 No automated tests are implemented for the app’s functionality.
 Future Enhancements
