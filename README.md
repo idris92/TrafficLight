@@ -7,7 +7,7 @@ The Traffic Light Control App is a simple simulation of a traffic control system
 
 Tech Stack
 Frontend Framework: React.js
-Styling: CSS/Chakra UI
+Styling: Styled Component
 Deployment: Netlify
 Installation/Setup Instructions
 To run the app locally, follow these steps:
